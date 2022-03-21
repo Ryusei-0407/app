@@ -11,10 +11,6 @@ jobs:
         os:
           - runs-on: ubuntu-latest
             nextest-url: https://get.nexte.st/latest/linux
-          - runs-on: macos-latest
-            nextest-url: https://get.nexte.st/latest/mac
-          - runs-on: windows-latest
-            nextest-url: https://get.nexte.st/latest/windows-tar
         rust: [stable]
 
     steps:
@@ -26,7 +22,7 @@ jobs:
           profile: minimal
           toolchain: ${{ matrix.rust }}
           override: true
-          components: rustfmt, clippy,, rust-src
+          components: rustfmt, clippy, rust-src
 
       - name: Install latest nextest tool
         shell: bash
