@@ -1,6 +1,10 @@
 name: Security audit
 
-on: [push]
+on:
+  push:
+    paths:
+      - '**/Cargo.toml'
+      - '**/Cargo.lock'
 
 jobs:
   security_audit:
@@ -15,3 +19,5 @@ jobs:
       - uses: actions/checkout@v2
 
       - uses: actions-rs/audit-check@v1
+        with:
+          token: ${{ secrets.AUDIT_TOKEN }}
