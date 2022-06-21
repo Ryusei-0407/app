@@ -1,5 +1,5 @@
 run:
-	mold -run cargo run
+	mold -run cargo run -q
 
 check:
 	mold -run cargo check
