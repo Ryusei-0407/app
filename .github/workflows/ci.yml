@@ -29,6 +29,9 @@ jobs:
         run: |
           curl -LsSf ${{ matrix.os.nextest-url }} | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
 
+      - name: Install mold
+        uses: rui314/setup-mold@1
+
       - name: Cache
         uses: actions/cache@v2
         with:
@@ -56,12 +59,12 @@ jobs:
 
       - name: Run Test
         run: |
-          cargo nextest run --verbose
+          mold -run cargo nextest run --verbose
 
       - name: Run Check
         run: |
-          cargo check --verbose
+          mold -run cargo check --verbose
 
       - name: Run Build
         run: |
-          cargo build --verbose
+          mold -run cargo build --verbose
