@@ -14,6 +14,8 @@ jobs:
         rust: [stable]
 
     steps:
+      - uses: rui314/setup-mold@1
+
       - uses: actions/checkout@v2
 
       - name: Install Rust toolchain
@@ -28,9 +30,6 @@ jobs:
         shell: bash
         run: |
           curl -LsSf ${{ matrix.os.nextest-url }} | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
-
-      - name: Install mold
-        uses: rui314/setup-mold@1
 
       - name: Cache
         uses: actions/cache@v2
