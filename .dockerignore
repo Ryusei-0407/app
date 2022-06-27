@@ -1,4 +1,10 @@
-.git
-.github
+.git/
+.github/
+.env
+target/
+tests/
+scripts/
+migrations/
+Dockerfile
 Makefile
 README.md
