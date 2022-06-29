@@ -20,3 +20,10 @@ services:
 
     routes:
       - path: /
+
+database:
+  - engin: PG
+    name: newsletter
+    num_nodes: 1
+    size: db-s-dev-database
+    version: '12'
