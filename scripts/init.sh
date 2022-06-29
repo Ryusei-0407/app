@@ -21,7 +21,7 @@ then
     docker-compose up -d --build
 fi
 
-sleep 1
+sleep 5
 
 echo >&2 "Postgres is up and running on port ${DB_PORT} - running migrations now!"
 
