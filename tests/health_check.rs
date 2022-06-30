@@ -2,7 +2,6 @@ use app::configuration::{get_configuration, DatabaseSettings};
 use app::startup::run;
 use app::telemetry::{get_subscriber, init_subscriber};
 use once_cell::sync::Lazy;
-use secrecy::ExposeSecret;
 use sqlx::{Connection, Executor, PgConnection, PgPool};
 use std::net::TcpListener;
 use uuid::Uuid;
