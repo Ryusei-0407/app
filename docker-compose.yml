@@ -1,7 +1,22 @@
 version: '3.9'
 
 services:
+  api:
+    depends_on:
+      - db
+    build:
+      dockerfile: Dockerfile.dev
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app/
+    tty: true
+    networks:
+      - backend
+    command: /app/scripts/init.sh
+
   db:
+    container_name: db
     image: postgres:14-alpine
     ports:
       - 5432:5432
@@ -16,6 +31,12 @@ services:
     hostname: localhost
     restart: always
     user: postgres
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: false
 
 volumes:
   db_data:

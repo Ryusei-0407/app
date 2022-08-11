@@ -1,7 +1,6 @@
 #!/bin/bash
 
-set -x
-set -eo pipefail
+set -e
 
 if ! [ -x "$(command -v sqlx)" ]; then
     echo >&2 "Error: sqlx is not installed."
@@ -16,11 +15,6 @@ DB_PASSWORD="${POSTGRES_PASSWORD:=password}"
 DB_NAME="${POSTGRES_DB:=newsletter}"
 DB_PORT="${POSTGRES_POST:=5432}"
 
-if [[ -z "${SKIP_DOCKER}" ]]
-then
-    docker-compose up -d --build
-fi
-
 sleep 5
 
 echo >&2 "Postgres is up and running on port ${DB_PORT} - running migrations now!"
@@ -30,3 +24,15 @@ sqlx database create
 sqlx migrate run
 
 echo >&2 "Postgres has been migrated."
+
+sleep 1
+
+echo >&2 "Run test"
+
+sleep 1
+
+cargo test
+
+echo >&2 "Run app"
+
+cargo run
