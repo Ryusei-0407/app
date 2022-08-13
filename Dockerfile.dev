@@ -3,10 +3,10 @@ FROM rust:1.61-slim-bullseye
 WORKDIR /app
 
 RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y \
+    curl \
+    libssl-dev \
+    pkg-config
 
 RUN cargo install sqlx-cli --no-default-features --features postgres,rustls
 RUN cargo install cargo-watch
-
-RUN apt-get install -y libssl-dev pkg-config
-
-CMD ["bash"]
