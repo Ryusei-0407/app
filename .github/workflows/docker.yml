@@ -1,0 +1,26 @@
+name: docker-compose
+
+on: [push]
+
+jobs:
+  ci:
+    runs-on: ${{ matrix.os.runs-on }}
+
+    strategy:
+      matrix:
+        os:
+          - runs-on: ubuntu-latest
+            nextest-url: https://get.nexte.st/latest/linux
+        rust: [stable]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: run
+        shell: bash
+        run: |
+          docker compose -f docker-compose.test.yml up -d --build
+          sleep 20
+          echo $(docker logs $(docker ps -aq | head -1))
+          sleep 3
+          docker compose -f docker-compose.test.yml down
