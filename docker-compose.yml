@@ -13,7 +13,7 @@ services:
     tty: true
     networks:
       - backend
-    command: /app/scripts/init.sh
+    command: bash -c "/app/scripts/init.sh && cargo watch -x run"
 
   db:
     container_name: db
