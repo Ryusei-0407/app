@@ -24,15 +24,3 @@ sqlx database create
 sqlx migrate run
 
 echo >&2 "Postgres has been migrated."
-
-sleep 1
-
-echo >&2 "Run test"
-
-sleep 1
-
-cargo test
-
-echo >&2 "Run app"
-
-cargo run
